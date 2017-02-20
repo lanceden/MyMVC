@@ -19,7 +19,7 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
    => internal class CSharpRazirViewEngine:RazorViewEngine{}
    => 建立建構子public CSharpRazirViewEngine(){}
    
- ## Vue Hello World
+## Vue Hello World
   1.引用VUE CDN
   2.引用Jquery CDN
   3.引用bootstrap CDN
