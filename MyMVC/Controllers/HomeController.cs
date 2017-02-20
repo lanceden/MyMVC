@@ -4,7 +4,7 @@
 
     public class HomeController : Controller
     {
-        public ActionResult Index() => View();
+        public ActionResult Index() => View(); 
         public ActionResult Test() => View();
     }
 }
