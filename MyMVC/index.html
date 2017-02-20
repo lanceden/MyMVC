@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="http://vuejs.org/js/vue.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+            integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+            crossorigin="anonymous"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="data.js"></script>
+
+    <style>
+        .myul {
+            display: inline;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    {{msg}}
+                </h3>
+            </div>
+            <div class="panel-body ">
+                <ul>
+                    <li class="myul col col-md-4" v-for="item in list">
+                        {{item.id}}
+                        {{item.first_name}}
+                        {{item.last_name}}
+                    </li>
+                </ul>
+            </div>
+            <button class="btn btn-danger" @click="doAdd">doAdd</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                msg: 'Hello World',
+                list: list
+            }
+        },
+        methods: {
+            doAdd() {
+                console.log('doAdd');
+            },
+            doMinus() {
+
+            }
+        }
+    })
+</script>
