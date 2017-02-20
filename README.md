@@ -1,4 +1,4 @@
-#  Warn up
+#  Day 3
 ## MVC，從無到有的建構 ( Hello World! )
 1. 新增一個空白專案
 2. 使用nuget將MVC package加入到專案中
