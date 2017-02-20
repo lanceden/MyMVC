@@ -4,13 +4,7 @@
 
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult Test()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
+        public ActionResult Test() => View();
     }
 }
