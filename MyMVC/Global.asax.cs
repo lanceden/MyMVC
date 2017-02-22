@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace MyMVC
 {
@@ -16,18 +12,25 @@ namespace MyMVC
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ViewEngineConfig.RegisterViewEngines(ViewEngines.Engines);
+            ControllerBuilder.Current.SetControllerFactory(new MyControllerFactory());
         }
 
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            HttpContext.Current.Response.Write("Session_Start <br>");
         }
-
+        protected void Application_PostResolveRequestCache(object sender,EventArgs e)
+        {
+            HttpContext.Current.Response.Write("Application_PostResolveRequestCache <br>");
+        }
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            HttpContext.Current.Response.Write("Application_BeginRequest <br>");
         }
-
+        protected void Application_EndRequest(object sender,EventArgs e)
+        {
+            HttpContext.Current.Response.Write("Application_EndRequest <br>");
+        }
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
 
@@ -35,12 +38,12 @@ namespace MyMVC
 
         protected void Application_Error(object sender, EventArgs e)
         {
-
+            HttpContext.Current.Response.Write("Application_Error <br>");
         }
 
         protected void Session_End(object sender, EventArgs e)
         {
-
+            HttpContext.Current.Response.Write("Session_End  <br>");
         }
 
         protected void Application_End(object sender, EventArgs e)

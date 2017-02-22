@@ -1,0 +1,24 @@
+﻿@model MyMVC.Person
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Find</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("Post", "Home", FormMethod.Post))
+        {
+            @Html.HiddenFor(s => s.Id)
+            @Html.TextBoxFor(s => s.Name)
+            @Html.TextBoxFor(s => s.Addr)
+            <input type="submit" />
+        }
+    </div>
+</body>
+</html>
