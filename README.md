@@ -28,3 +28,23 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
   
 ###  Day 3 HomeWork
 * 利用VUE實作計算機
+
+#  Day 4
+## 自定義ControllerFactory
+1. 新增MyControllerFactory
+2. 查看MVCSource查看可以複寫Create 方法
+3. 複寫Create 方法
+4. 依客戶需求自定Controller名稱,如:PersonSKL
+5. 一樣是在Create新增判斷即可
+
+## 新增mock data by list
+1. 在HomeController中新增一個PersonList,並新增100個資料進List
+2. 在View宣告成強類型視圖(@model xxx)
+3. 用@foreach 將list資料展示在頁面上
+
+## 自定義擴展方法(Htmlhelper)
+1. 查看HtmlHelper可以看到MVC的HTmlTextBox()也是用擴展方法實現,所以我們也可以自定義我們的Helper
+2. 建立自己的Helper並實作Html.Button()
+
+
+
