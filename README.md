@@ -46,5 +46,7 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
 1. 查看HtmlHelper可以看到MVC的HTmlTextBox()也是用擴展方法實現,所以我們也可以自定義我們的Helper
 2. 建立自己的Helper並實作Html.Button()
 
+###  Day 4 HomeWork
+* 利用Find方法完成修改
 
 
