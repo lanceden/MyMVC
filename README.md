@@ -49,4 +49,12 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
 ###  Day 4 HomeWork
 * 利用Find方法完成修改
 
+#  Day 5
+## 補充
+1. 示範如何宣告.net 內建的三種委託(Action,Predicate,Func) 來實作委派方法
+2. 實作SPA頁面(Vue + Vue-Router)
+3. Ajax 取後臺資料(axios)
+4. v-if v-else 搭配template 依條件隔行換色
 
+###  Day 5 回家練習
+* 用Ajax完成SPA頁面的新增方法
