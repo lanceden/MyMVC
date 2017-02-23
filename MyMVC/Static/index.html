@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="../Script/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"
             integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
             crossorigin="anonymous"></script>
@@ -15,53 +16,173 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="../Script/data.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <style>
         .myul {
             display: inline;
             border: 1px solid #000;
         }
+
+        .bs-example > div {
+            margin: 0 0 10px 0;
+        }
+        .active {
+            color:#2c88a1;
+            font-family:微軟正黑體;
+        }
+        .noactive {
+            color: #808080;
+        }
+        .navbar-toggle {
+            float:left;
+        }
     </style>
 </head>
 <body>
     <div id="app" class="container">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    {{msg}}
-                </h3>
-            </div>
-            <div class="panel-body ">
-                <ul>
-                    <li class="myul col col-md-4" v-for="item in list">
-                        {{item.id}}
-                        {{item.first_name}}
-                        {{item.last_name}}
-                    </li>
-                </ul>
-            </div>
-            <button class="btn btn-danger" @click="doAdd">doAdd</button>
-        </div>
+        <my-header></my-header>
+        <p>
+            <router-link class="btn btn-danger col col-xs-6" :to="{name:'Index'}">首頁</router-link>
+            <router-link class="btn btn-info col col-xs-6" :to="{name:'Edit'}">新增</router-link>
+        </p>
+        <router-view></router-view>
     </div>
 </body>
 </html>
 <script>
-    new Vue({
-        el: '#app',
+    const list = []
+    // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
+
+    // 1. 定义（路由）组件。
+    // 可以从其他文件 import 进来
+    const Edit = {
+        template: `
+            <form class="bs-example bs-example-form" data-example-id="simple-input-groups">
+            <h1>表單填寫</h1>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Id</span>
+                <input type="text" class="form-control" placeholder="Id" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Name</span>
+                <input type="text" class="form-control" placeholder="Name" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Addr</span>
+                <input type="text" class="form-control" placeholder="Addr" aria-describedby="basic-addon1">
+            </div>
+            <div>
+                <button class="col col-md-6 btn btn-danger btn-lg">送出</button>
+                <button class="col col-md-6 btn btn-warning  btn-lg">取消</button>
+            </div>
+        </form>
+        ` }
+    const Index = {
+        template: `
+            <table class="table table-hover ">
+                    <thead>
+                        <tr class="danger">
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,key) in list">
+                            <template v-if="key % 2 == 0">
+                                <td class="active">{{item.Id}}</td>
+                                <td class="active">{{item.Name | toLower}}</td>
+                                <td class="active">{{item.Addr | toLower }}</td>
+                            </template>
+                            <template v-else>
+                                <td class="noactive">{{item.Id}}</td>
+                                <td class="noactive">{{item.Name}}</td>
+                                <td class="noactive">{{item.Addr}}</td>
+                            </template>
+                        </tr>
+                    </tbody>
+                </table>
+        `,
         data() {
             return {
-                msg: 'Hello World',
-                list: list
+                list: []
             }
         },
-        methods: {
-            doAdd() {
-                console.log('doAdd');
-            },
-            doMinus() {
-
-            }
+        beforeRouteEnter(to, from, next) {
+            axios.get('/Home/GetList/')
+                .then(function (res) {
+                    next(vm => {
+                        vm.list = res.data.data
+                    })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
         }
+    }
+
+    // 2. 定义路由
+    // 每个路由应该映射一个组件。 其中"component" 可以是
+    // 通过 Vue.extend() 创建的组件构造器，
+    // 或者，只是一个组件配置对象。
+    // 我们晚点再讨论嵌套路由。
+    const routes = [
+        { path: '/Index', component: Index, name: 'Index' },
+        { path: '/Edit', component: Edit, name: 'Edit' },
+        { path: '*', redirect: { name: 'Index' } }
+    ]
+
+    // 3. 创建 router 实例，然后传 `routes` 配置
+    // 你还可以传别的配置参数, 不过先这么简单着吧。
+    const router = new VueRouter({
+        routes // （缩写）相当于 routes: routes
+    })
+
+    // 4. 创建和挂载根实例。
+    // 记得要通过 router 配置参数注入路由，
+    // 从而让整个应用都有路由功能
+    const app = new Vue({
+        beforeCreate: function () {
+            axios.get('/Home/GetList')
+            .then(function (response) {
+                console.log(response.data.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        },
+        router
+    }).$mount('#app')
+    //5. 自定義Filter
+    Vue.filter('toLower', function (val) {
+        return val.toLowerCase()
+    })
+    Vue.component('my-header', {
+        template: `
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Hello SPA Application!</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                       
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        `
     })
 </script>

@@ -6,35 +6,42 @@
 
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        List<Person> personList = null;
+        public HomeController()
         {
-            var personList = new List<Person>();
+            personList = new List<Person>();
             for (int i = 1; i <= 100; i++)
             {
                 personList.Add(new Person()
                 {
-                    Id = i,Name = "SKL"+i,Addr = "Taipei"+i
+                    Id = i,
+                    Name = "SKL" + i,
+                    Addr = "Taipei" + i
                 });
             }
+        }
+        public ActionResult Index()
+        {
             Session["list"] = personList;
             return View(personList);
         }
+        [HttpGet]
+        public ActionResult GetList() => Json(new { data = personList }, JsonRequestBehavior.AllowGet);
 
+        [HttpGet]
         public ActionResult Find(int id)
         {
-            var list = Session["list"] as List<Person>;
-            var person = list.Where(s => s.Id == id).FirstOrDefault();
-            return View(person);
+            personList = Session["list"] as List<Person>;
+            var person = personList.Where(s => s.Id == id).FirstOrDefault();
+            return Json(new { status = "ok", data = person }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult Post(Person p)
         {
-            var list = Session["list"] as List<Person>;
-            var person = list.Where(s => s.Id == p.Id).FirstOrDefault();
-            list.Remove(person);
-            list.Add(p);
-            list = list.OrderBy(s => s.Id).ToList();
-            return View("Index", list);
+            personList = Session["list"] as List<Person>;
+            personList.Remove(personList.Where(s => s.Id == p.Id).FirstOrDefault());
+            personList.Add(p);
+            return Json(new { status = "ok" });
         }
         public ActionResult Test()
         {
