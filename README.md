@@ -54,6 +54,7 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
 2. 實作SPA頁面(Vue + Vue-Router)
 3. Ajax 取後臺資料(axios)
 4. v-if v-else 搭配template 依條件隔行換色
+5. 使用Vue.Filter 將後臺資料做不同格式的顯示
 
 ###  Day 5 回家練習
 * 用Ajax完成SPA頁面的新增方法
