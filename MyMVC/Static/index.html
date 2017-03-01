@@ -59,25 +59,44 @@
     const Edit = {
         template: `
             <form class="bs-example bs-example-form" data-example-id="simple-input-groups">
-            <h1>表單填寫</h1>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Id</span>
-                <input type="text" class="form-control" placeholder="Id" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Name</span>
-                <input type="text" class="form-control" placeholder="Name" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Addr</span>
-                <input type="text" class="form-control" placeholder="Addr" aria-describedby="basic-addon1">
-            </div>
-            <div>
-                <button class="col col-md-6 btn btn-danger btn-lg">送出</button>
-                <button class="col col-md-6 btn btn-warning  btn-lg">取消</button>
-            </div>
-        </form>
-        ` }
+                <h1>表單填寫</h1>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Id</span>
+                    <input type="text" class="form-control" placeholder="Id" v-model="formModel.Id" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Name</span>
+                    <input type="text" class="form-control" placeholder="Name" v-model="formModel.Name"  aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Addr</span>
+                    <input type="text" class="form-control" placeholder="Addr" v-model="formModel.Addr" aria-describedby="basic-addon1">
+                </div>
+                <div>
+                    <button class="col col-md-6 btn btn-danger btn-lg" v-on:click="doSubmit">送出</button>
+                    <button class="col col-md-6 btn btn-warning  btn-lg">取消</button>
+                </div>
+            </form>
+        `,
+        data: function() {
+            return {
+                formModel: {}
+            }
+        },
+        methods: {
+            doSubmit: function () {
+                axios.post('/Home/VuePost', this.formModel)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                return;
+                router.push({ path: 'Index' })
+            }
+        }
+    }
     const Index = {
         template: `
             <table class="table table-hover ">
@@ -113,6 +132,7 @@
             axios.get('/Home/GetList/')
                 .then(function (res) {
                     next(vm => {
+                        console.log(vm);
                         vm.list = res.data.data
                     })
                 })
@@ -143,15 +163,6 @@
     // 记得要通过 router 配置参数注入路由，
     // 从而让整个应用都有路由功能
     const app = new Vue({
-        beforeCreate: function () {
-            axios.get('/Home/GetList')
-            .then(function (response) {
-                console.log(response.data.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        },
         router
     }).$mount('#app')
     //5. 自定義Filter

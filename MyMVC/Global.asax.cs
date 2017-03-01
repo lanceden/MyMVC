@@ -17,19 +17,19 @@ namespace MyMVC
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Write("Session_Start <br>");
+            //HttpContext.Current.Response.Write("Session_Start <br>");
         }
         protected void Application_PostResolveRequestCache(object sender,EventArgs e)
         {
-            HttpContext.Current.Response.Write("Application_PostResolveRequestCache <br>");
+            //HttpContext.Current.Response.Write("Application_PostResolveRequestCache <br>");
         }
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Write("Application_BeginRequest <br>");
+            //HttpContext.Current.Response.Write("Application_BeginRequest <br>");
         }
         protected void Application_EndRequest(object sender,EventArgs e)
         {
-            HttpContext.Current.Response.Write("Application_EndRequest <br>");
+            //HttpContext.Current.Response.Write("Application_EndRequest <br>");
         }
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
@@ -38,12 +38,12 @@ namespace MyMVC
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Write("Application_Error <br>");
+            //HttpContext.Current.Response.Write("Application_Error <br>");
         }
 
         protected void Session_End(object sender, EventArgs e)
         {
-            HttpContext.Current.Response.Write("Session_End  <br>");
+            //HttpContext.Current.Response.Write("Session_End  <br>");
         }
 
         protected void Application_End(object sender, EventArgs e)
