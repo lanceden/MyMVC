@@ -45,3 +45,4 @@ c:\users\asus\documents\visual studio 2017\Projects\MyMVC\MyMVC\bin\System.Web.W
 c:\users\asus\documents\visual studio 2017\Projects\MyMVC\MyMVC\bin\System.Web.WebPages.Razor.xml
 c:\users\asus\documents\visual studio 2017\Projects\MyMVC\MyMVC\obj\Debug\MyMVC.dll
 c:\users\asus\documents\visual studio 2017\Projects\MyMVC\MyMVC\obj\Debug\MyMVC.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Projects\MyMVC\MyMVC\bin\Respotiroy.dll
