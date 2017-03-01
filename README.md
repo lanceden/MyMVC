@@ -65,5 +65,5 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
 3. 將重複使用的代碼封裝為 .dll 檔(Repository)
 4. 將封裝完成的 .dll 加入至新專案使用,並調用方法完成查詢
 
-###  Day 5 回家預習
+###  Day 6 回家預習
  EntityFrameWork
