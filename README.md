@@ -70,11 +70,12 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
  
 #  Day 7
 1. 利用EntityFrameWork 在C# 代碼中實現CRUD
-2. 新增Repository專案 及 IRepository專案 封裝SQL處理邏輯方法
-3. 新增單元測式專案,並針對Repository進行UnitTest
-4. 示範如何利用單元測試針對單一方法測試
+2. 示範如何用子類向父類傳遞參數 :base()
+3. 在MVC專案中 新增Repository專案 及 IRepository專案 封裝SQL處理邏輯方法
+4. 新增單元測式專案,並針對Repository進行UnitTest
+5. 示範如何利用單元測試針對單一方法測試
 
-# 已補上DeleteRangeTest 使用方法
+# PS.已補上DeleteRangeTest 使用方法
 
 ###  Day 7 回家預習
 * Autofac
