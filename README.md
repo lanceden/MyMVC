@@ -66,7 +66,7 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
 4. 將封裝完成的 .dll 加入至新專案使用,並調用方法完成查詢
 
 ###  Day 6 回家預習
- EntityFrameWork
+* EntityFrameWork
  
 #  Day 7
 1. 利用EntityFrameWork 在C# 代碼中實現CRUD
@@ -77,4 +77,4 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
 # 已補上DeleteRangeTest 使用方法
 
 ###  Day 7 回家預習
- Autofac
+* Autofac
