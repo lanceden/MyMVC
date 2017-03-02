@@ -74,7 +74,7 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
 3. 新增單元測式專案,並針對Repository進行UnitTest
 4. 示範如何利用單元測試針對單一方法測試
 
-#已補上DeleteRangeTest 使用方鈜
+#已補上DeleteRangeTest 使用方法
 
 ###  Day 7 回家預習
  Autofac
