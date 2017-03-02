@@ -70,7 +70,7 @@ RouteConfig.RegisterRoutes(RouteTable.Routes); =>要加入using 的namespace ) 5
  
 #  Day 7
 1. 利用EntityFrameWork 在C# 代碼中實現CRUD
-2. 新增Repository 及 IRepository 封裝SQL 方法
+2. 新增Repository專案 及 IRepository專案 封裝SQL處理邏輯方法
 3. 新增單元測式專案,並針對Repository進行UnitTest
 4. 示範如何利用單元測試針對單一方法測試
 
